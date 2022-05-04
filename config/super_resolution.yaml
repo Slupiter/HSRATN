@@ -1,0 +1,55 @@
+MODEL:
+
+
+TRAIN:
+  train_data_dir: [
+    './dataset/textZoom/train1',
+    './dataset/textZoom/train2',
+    #'./dataset/ICDAR2015/DATA/TRAIN'
+  ]
+  batch_size: 512
+  width: 128
+  height: 32
+  epochs: 500 #S 500
+  cuda: True
+  ngpu: 1    #S 4
+  workers: 2
+  resume: ''
+  ckpt_dir: './ckpt/'
+  voc_type: 'all' #'digits lower upper all'
+  saveInterval: 10000
+  displayInterval: 100 #display loss
+  adadelta: False
+  lr: 0.0001 #############S 0.001????????????
+  adam: True
+  beta1: 0.9   #########S 0.5?????????
+  manualSeed: 1234
+  max_len: 100
+  keep_ratio: False
+  down_sample_scale: 2
+
+  VAL:
+    val_data_dir: [
+      './dataset/textZoom/test/hard',
+      './dataset/textZoom/test/easy',
+      './dataset/textZoom/test/medium',
+      # './dataset/ICDAR2015/DATA/TEST',
+    ]
+    n_vis: 10
+    vis_dir: 'demo'
+    valInterval: 200  #200 -1, val at the end of epoch 800/868 with hranSeries,600 hranRe,400syn
+    rec_pretrained: './textRecognition/aster.pytorch/pretrained/demo.pth.tar'
+    moran_pretrained: './textRecognition/MORAN_v2/moran/demo.pth'
+    crnn_pretrained: './textRecognition/crnn.pytorch/crnn/crnn.pth'
+
+TEST:
+  checkpoint: ''
+  test_data_dir: [
+
+  ]
+
+CONVERT:
+  image_dir:
+  lmdb_dir:
+  n_convert: 10
+
